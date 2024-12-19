@@ -13,7 +13,7 @@ public class SockDto {
 
     private String color;
 
-    private double cottonPercentage;
+    private Double cottonPercentage;
 
-    private int count;
+    private Integer count;
 }

@@ -15,4 +15,5 @@ public class SpecificationBuilder<T> {
         }
         return result;
     }
+
 }

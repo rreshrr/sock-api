@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({BusinessException.class, TechnicalException.class})
+    @ExceptionHandler({BusinessException.class, TechnicalException.class, RuntimeException.class})
     public ResponseEntity<String> handleException(Exception exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }

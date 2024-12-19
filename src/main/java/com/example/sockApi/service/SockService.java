@@ -28,8 +28,11 @@ import java.util.*;
 public class SockService {
 
     private static final String CSV_SEPARATOR = ",";
+
     private final SockRepository sockRepository;
+
     private final MappingUtils mappingUtils;
+
     private final SpecificationBuilder<Sock> specificationBuilder;
 
     private static Sock createSock(String color, double cottonPercentage, int count) {
@@ -41,7 +44,7 @@ public class SockService {
     }
 
     public List<SockDto> getSocksByFilters(String color, Double exactCottonPercentage,
-                                            Double minCottonPercentage, Double maxCottonPercentage) {
+                                           Double minCottonPercentage, Double maxCottonPercentage) {
 
         Specification<Sock> specification = specificationBuilder.build(List.of(
                 SockSpecifications.colorEquals(color),
@@ -93,7 +96,7 @@ public class SockService {
                 throw new BusinessException(errorMessage);
             }
         } else {
-            String errorMessage = String.format("Sock release error - the required socks are not in stock (color: %s, cotton percentage: %f, quantity: %d)",
+            String errorMessage = String.format("Sock outcome error - the required socks are not in stock (color: %s, cotton percentage: %f, quantity: %d)",
                     color, cottonPercentage, count);
             log.error(errorMessage);
             throw new BusinessException(errorMessage);
@@ -168,6 +171,6 @@ public class SockService {
             log.error(errorMessage);
             throw new BusinessException(errorMessage, e);
         }
-
     }
+
 }

@@ -23,8 +23,8 @@ public class Sock {
     private String color;
 
     @Column(name = "cotton_percentage", nullable = false)
-    private double cottonPercentage;
+    private Double cottonPercentage;
 
     @Column(name = "count", nullable = false)
-    private int count;
+    private Integer count;
 }

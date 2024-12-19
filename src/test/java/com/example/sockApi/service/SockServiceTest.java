@@ -134,19 +134,19 @@ class SockServiceTest {
 
         Sock updatedSock = new Sock();
         updatedSock.setId(1L);
-        updatedSock.setColor("green");
+        updatedSock.setColor("Green");
         updatedSock.setCottonPercentage(70.0);
         updatedSock.setCount(200);
 
         Mockito.when(sockRepository.findById(1L)).thenReturn(Optional.of(existingSock));
         Mockito.when(sockRepository.save(Mockito.any(Sock.class))).thenReturn(updatedSock);
         Mockito.when(mappingUtils.mapToSockDto(updatedSock))
-                .thenReturn(new SockDto(1L, "green", 70.0, 200));
+                .thenReturn(new SockDto(1L, "Green", 70.0, 200));
 
-        SockDto result = sockService.updateSocks(1L, "green", 70.0, 200);
+        SockDto result = sockService.updateSocks(1L, "Green", 70.0, 200);
 
         Assertions.assertNotNull(result);
-        Assertions.assertEquals("green", result.getColor());
+        Assertions.assertEquals("Green", result.getColor());
         Assertions.assertEquals(70.0, result.getCottonPercentage());
         Assertions.assertEquals(200, result.getCount());
 
@@ -160,7 +160,7 @@ class SockServiceTest {
 
         BusinessException exception = Assertions.assertThrows(
                 BusinessException.class,
-                () -> sockService.updateSocks(1L, "green", 70.0, 200)
+                () -> sockService.updateSocks(1L, "Green", 70.0, 200)
         );
 
         Assertions.assertTrue(exception.getMessage().contains("missing items with the passed Id"));
@@ -170,7 +170,7 @@ class SockServiceTest {
     }
 
     @Test
-    void testProcessFileCsv_Success() throws IOException, BusinessException, TechnicalException {
+    void testProcessFileCsv_Success() throws BusinessException, TechnicalException {
         MockMultipartFile mockFile = new MockMultipartFile(
                 "file", "socks.csv", "text/csv",
                 "red,50.0,100\nblue,75.0,50".getBytes()

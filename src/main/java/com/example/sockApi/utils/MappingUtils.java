@@ -24,4 +24,5 @@ public class MappingUtils {
         sockEntity.setCount(sockDto.getCount());
         return sockEntity;
     }
+
 }

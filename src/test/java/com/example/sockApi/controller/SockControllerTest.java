@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
-
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -25,13 +24,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class SockControllerTest {
 
+    private static final String BASE_URL = "/api/socks";
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private SockService sockService;
-
-    private static final String BASE_URL = "/api/socks";
 
     @Test
     public void testIncomeSocks() throws Exception {
@@ -235,7 +232,7 @@ public class SockControllerTest {
         Mockito.when(sockService.getSocks(null, null, null, null, SortBy.COLOR_ASC)).thenReturn(List.of(mockSocks.get(1), mockSocks.get(0)));
 
         mockMvc.perform(get(BASE_URL)
-                        .param("sortBy","COLOR_ASC"))
+                        .param("sortBy", "COLOR_ASC"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].color", is("Blue")))
                 .andExpect(jsonPath("$[1].color", is("Red")));

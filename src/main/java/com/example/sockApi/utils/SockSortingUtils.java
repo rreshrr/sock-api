@@ -20,4 +20,5 @@ public class SockSortingUtils {
     public static Comparator<SockDto> getComparator(SortBy sortBy) {
         return SORTING_MAP.get(sortBy);
     }
+
 }
